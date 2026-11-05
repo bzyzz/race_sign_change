@@ -1,0 +1,15 @@
+# X=1000000000000000 (primesieve 12.16)
+team 8 first 0 G(X) -2245736 maxG -1
+team 12 first 0 G(X) -2893779 maxG 0
+team 15 first 0 G(X) -2581627 maxG -1
+team 24 first 0 G(X) -5270339 maxG -1
+team 40 first 0 G(X) -6470515 maxG -1
+team 56 first 0 G(X) -6064747 maxG -1
+team 60 first 0 G(X) -5437866 maxG -1
+team 84 first 0 G(X) -6473106 maxG -1
+team 105 first 0 G(X) -6201658 maxG -1
+team 120 first 0 G(X) -11196810 maxG -1
+team 132 first 0 G(X) -5735834 maxG -1
+team 156 first 0 G(X) -6711730 maxG -1
+team 165 first 0 G(X) -5040194 maxG 0
+team 168 first 0 G(X) -8626122 maxG -1

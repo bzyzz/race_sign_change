@@ -1,0 +1,25 @@
+# Python caches and compiled code (rebuild with `make`)
+__pycache__/
+*.py[cod]
+*.so
+census/team_count
+census/count_races
+census/check_primesieve
+census/zones
+
+# Regenerable data:
+# heuristic float zeros (census/run_zeros.sh)
+census/zeros/
+# float zero locations (zeros/run_arb.sh)
+data/float_*.npy
+# per-chunk Arb caches; data/arb_*/certified.npz holds the certified intervals
+data/arb_*/chunk_*.npz
+*.log
+
+# Superseded early output (replaced by census/fiorilli_points.json)
+census/fiorilli_table.txt
+
+# Manuscript and working notes (not part of the code release)
+paper/
+NOTES.md
+FEASIBILITY.md

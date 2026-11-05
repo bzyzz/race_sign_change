@@ -1,0 +1,17 @@
+8 r 4 u_pred 181.4 log10x 78.77
+12 r 4 u_pred 760.3 log10x 330.2
+15 r 4 u_pred 173.6 log10x 75.41
+20 r 4 u_pred 35.78 log10x 15.54
+21 r 4 u_pred 29.67 log10x 12.89
+28 r 4 u_pred 23.21 log10x 10.08
+24 r 8 u_pred 1.29e+04 log10x 5604
+40 r 8 u_pred 462.3 log10x 200.8
+56 r 8 u_pred 288.4 log10x 125.2
+60 r 8 u_pred 3268 log10x 1419
+84 r 8 u_pred 425.8 log10x 184.9
+105 r 8 u_pred 270.6 log10x 117.5
+132 r 8 u_pred 57.93 log10x 25.16
+156 r 8 u_pred 43.78 log10x 19.01
+165 r 8 u_pred 54.18 log10x 23.53
+120 r 16 u_pred 4.024e+04 log10x 1.748e+04
+168 r 16 u_pred 5802 log10x 2520

@@ -1,0 +1,5 @@
+# X=65000000000000 (primesieve 12.16)
+team 15 first 0 G(X) -621284 maxG -1
+team 20 first 64039880506961 G(X) -273352 maxG 57
+team 21 first 4243973906701 G(X) -256216 maxG 4157
+team 28 first 3843952272217 G(X) -639712 maxG 3912

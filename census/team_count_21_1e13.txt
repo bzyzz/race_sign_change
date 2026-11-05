@@ -1,0 +1,5 @@
+# X=10000000000000
+team 21 first 4243973906701 G(X) -498541 maxG 4157
+team 15 first 0 G(X) -314497 maxG -1
+team 20 first 0 G(X) -413889 maxG 0
+team 28 first 3843952272217 G(X) -414469 maxG 3912
