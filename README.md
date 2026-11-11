@@ -21,19 +21,23 @@ Chebyshev's bias keeps the non-residues ahead most of the time. The first lead x
 | 55 | 4,347,138,491 |
 
 The three proven intervals:
-- **q = 8:** 10¹⁵ < x₈ < 10^28.1270. The upper bound is certified in the companion repository [`skewes_bound`](https://github.com/bzyzz/skewes_bound).
+- **q = 8:** 10¹⁵ < x₈ < 10^28.1270. The upper bound is certified in the companion repository [`skewes_bound`](https://github.com/bzyzz/skewes_bound). It lies in the region that Bays, Ford, Hudson and Rubinstein (2001) found heuristically, and improves x₈ < e^158.65233 < 10^68.9019, which follows from Ford and Hudson (2001), eq. (3.4).
 - **q = 12:** 10¹⁵ < x₁₂ < 10^147.5007, also from `skewes_bound`.
-- **q = 15:** 10¹⁵ < x₁₅ < 10^47.9376, certified here.
+- **q = 15:** 10¹⁵ < x₁₅ < 10^47.9377, certified here.
+
+Every exponent of an upper bound is rounded up to four decimals.
 
 Many races lead at a tiny prime, because the first few primes happen to be residues: 26 of the 47 lead below 100.
 
-**ρ ≥ 8.** Seven races lead below 10¹² (88, 104, 136, 140, 152, 184, 195). The other eleven have no lead below 10¹⁵. For eight of these, certificates give proven upper bounds:
+**ρ ≥ 8.** Seven races lead below 10¹² (88, 104, 136, 140, 152, 184, 195). The other eleven have no lead below 10¹⁵, and certificates give proven upper bounds for all of them:
 
-| q | 156 | 132 | 56 | 40 | 165 | 105 | 84 | 60 |
-|---|---|---|---|---|---|---|---|---|
-| x_q < 10^… | 19.8929 | 24.2940 | 28.1310 | 42.4953 | 47.0413 | 78.4148 | 98.6909 | 696.0560 |
+| q | 156 | 132 | 56 | 40 | 165 | 105 | 84 | 60 | 168 | 120 | 24 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| x_q < 10^… | 19.8929 | 24.2940 | 28.1310 | 42.4953 | 47.0413 | 78.4148 | 98.6909 | 696.0560 | 2321.4907 | 4262.3034 | 5914.7169 |
 
-For the last three, q = 24, 120 and 168, the first positive region of the explicit formula (near 10^5915, 10^4262 and 10^2321) is narrower than any mollifier allowed by the known GRH heights. They are out of reach of this unconditional method.
+So every residue race with q ≤ 200 is settled exactly or within proven bounds.
+
+The last three, q = 168, 120 and 24, sit at the first positive region of the explicit formula. There the zeros above Platt's GRH heights force a mollifier of order M = 1536, 2821 and 3915. Its support is wider than the positive region, but its effective width (about √2 δ/(π√M)) is far narrower, so the average still sees the lead. The transform of such a mollifier is evaluated exactly with Gamma functions (`certify/race_criterion.py`, `kap_hat`). An earlier version of this README said these three races were out of reach; that argument compared the support of the mollifier with the width of the region, which is not what the criterion needs.
 
 **Near-misses.** There are 672 exact lead regions with e²⁰ ≤ x ≤ 10¹² in the races with ρ ≥ 4. Against these, the truncated explicit formula behaves as follows (`census/near_miss_T*.json`):
 - a positive sum (zeros ≤ 10⁴) always came with a lead;
@@ -70,6 +74,7 @@ census/*.txt, *.json         outputs of the runs (counts, scans, calibration, Fi
 certify/team_criterion.py    the criterion: characters, Platt heights, error terms R3, R4, R5, eps0, bias
 certify/team_certify.py      Arb certificate -> team_cert_q<q>_T<T0>_w<omega>.json
 certify/team_search.py       floating-point parameter search
+certify/hybrid_search.py     floating-point test of large-M and Logan mollifiers for the races at u > 5000
 certify/validate_team.py     check of the explicit formula against actual primes
 certify/prime_pi.py          exact pi(y) for the bias term below Dusart's range
 certify/race_criterion.py, certify.py   shared race code (from skewes_bound/race/criterion)
@@ -103,9 +108,12 @@ python team_certify.py 15 100000 110.3802155 1.46e-4 4.8e-5 40 0,0,0,1 16
 python team_certify.py 105 20000 180.5552 1e-3 4.92e-4 60 0,0,0,1 16
 python team_certify.py 84 20000 227.2428 7e-4 5.2e-4 60 0,0,0,1 16
 python team_certify.py 60 20000 1602.724 1e-3 3e-3 300 0,0,0,1 16
+python team_certify.py 168 10000 5345.40616 1.4e-3 2.224e-2 1536 0,0,0,1 16
+python team_certify.py 120 10000 9814.2856 1.6e-3 2.903e-2 2821 0,0,0,1 16
+python team_certify.py 24 10000 13619.1293 1.4e-3 8.155e-3 3915 0,0,0,1 16
 ```
 
-The arguments are q, T₀, ω, η₁, δ, M, the core weights (λ₁, …, λ₄) and the number of processes. A certificate states that the residues lead for some log x ∈ [ω − η₁ − δ, ω + η₁ + δ] when L > 0. Each command regenerates the corresponding JSON in `certify/` byte for byte.
+The arguments are q, T₀, ω, η₁, δ, M, the core weights (λ₁, …, λ₄) and the number of processes. A certificate states that the residues lead for some log x ∈ [ω − η₁ − δ, ω + η₁ + δ] when L > 0. Its field `bound_log10` is log₁₀ of the upper end of that window, rounded up; `input_sha256` lists the hashes of the zero files and Turing certificates it read. Each command regenerates the corresponding JSON in `certify/` byte for byte.
 
 To recompute the zeros from scratch, run `zeros/run_arb.sh T NP d.n ...`. It does float location, then Arb certification, then the Turing check, and writes `data/arb_d_n/`. At 2·10⁴ it takes minutes to an hour per character on 16 processes; at 10⁵, several hours.
 
